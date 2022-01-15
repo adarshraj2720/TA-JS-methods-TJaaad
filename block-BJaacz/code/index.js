@@ -36,8 +36,15 @@ function addTwoToArray(arr ,addTwo){
     return finalArray;
   }
   
+// refactor
 
-
+function addTwoToArray(arr){
+  let finalArray=[];
+  for(let num of arr){
+    finalArray.push(addTwo(num))
+  }
+  return finalArray;
+}
 /*
   Create a function named addThreeToArray which accepts:
     - an array of numbers
@@ -92,6 +99,17 @@ function changeArray(arr, cb){
 }
 
 
+// refactor
+
+function changeArray(arr,cb){
+let finalArray=[];
+for(let num of arr){
+  finalArray.push(cb(num));
+}
+return finalArray;
+
+}
+
 console.log(changeArray([1, 2, 3, 4, 5, 6], addTwo));
 /*
   Create a function called sendMessage that accepts two arguments:
@@ -103,14 +121,18 @@ console.log(changeArray([1, 2, 3, 4, 5, 6], addTwo));
     console.log(sendMessage("Hello Alert!", alert));
     console.log(sendMessage("Hello Prompt!", prompt));
 */
-// function sendMessage(msg)
+function sendMessage(msg,cb){
+  return cb(msg);
+}
 
 /*
 
  Create a function named `first` that accepts an argument a function (callback) and return the same function defination.
 
 */
-
+ function first(cb){
+   return cb;
+ }
 
 /*
  Create a function named `second`
@@ -132,6 +154,17 @@ console.log(second()(5));
   - return final varibale from the function.
   - also write the required code to call the function.
 */
+
+function callMe(cb){
+let final=cb();
+return final;
+}
+let test= callMe(function(){
+  return 21;
+});
+
+
+
 
 // Data Starts (Don't change this)
 const people = [
@@ -251,25 +284,16 @@ function isGradeC(obj){
       { name: 'Liam Smith', age: 20 },
     ];
 */
-function filterAdult(people){
+function filterAdult(arr){
   let finalArray=[];
-  for(let adult of  people){
-    if(adult.age>18){
+  for(let adult of  arr){
+    if(isAdult(adult)){
       finalArray.push(adult);
     }
   }
 return finalArray;
 }
 
-function filterAdult(people, isAdult){
-  let finalArray = [];
-  for(let adult of people){
-    if(isAdult(adult)){
-      finalArray.push(adult);
-    }
-  }
-  return finalArray;
-}
 
 
 console.log(filterAdult(people, isAdult));
@@ -349,11 +373,11 @@ console.log(filterFemale(grades))
       { name: 'Jane', grade: 9, sex: 'F' },
     ]
 */
-function filterGradeA(arr , isGradeA){
+function filterGradeA(arr ){
   let finalArray = [];
-  for(let obj  of grades ){
-      if(isGradeA(obj)){
-        finalArray.push(obj);
+  for(let person  of arr ){
+      if(isGradeA(person)){
+        finalArray.push(person);
       }
   }
 return finalArray;
@@ -376,17 +400,17 @@ return finalArray;
      { name: 'Jane', grade: 9, sex: 'F' },
     ]
 */
-function filterGradeB(arr , isGradeB){
+function filterGradeB(arr ){
   let finalArray = [];
-  for(let obj  of grades ){
-      if(isGradeB(obj)){
-        finalArray.push(obj);
+  for(let person  of grades ){
+      if(isGradeB(person)){
+        finalArray.push(person);
       }
   }
 return finalArray;
 }
 
-console.log(filterGradeB(grades , isGradeB));
+
 /*
   Create a function named filterGradeC which accepts:
     - an array of objects
@@ -404,17 +428,17 @@ console.log(filterGradeB(grades , isGradeB));
       { name: 'Donald', grade: 5, sex: 'M' },
     ]
 */
-function filterGradeC(arr , isGradeC){
+function filterGradeC(arr){
   let finalArray = [];
-  for(let obj  of grades ){
-      if(isGradeC(obj)){
-        finalArray.push(obj);
+  for(let person  of grade ){
+      if(isGradeC(person)){
+        finalArray.push(person);
       }
   }
 return finalArray;
 }
 
-console.log(filterGradeC(grades , isGradeC));
+
 /*
 We are repeating lots of code in above functions like filterGradeC, filterGradeB, filterGradeA, filterAdult. We will fix
 this by making a higher order function named filter. Now using one function filter we will be able to filter anything we want.
@@ -435,11 +459,11 @@ filter is a higher order function.
     console.log(filter(grade, isGradeB));
     console.log(filter(grade, isGradeC));
 */
-function filter(arr , fun){
+function filter(arr , cb){
   let finalArray =[];
-  for(let obj of arr){
-    if(fun(obj)){
-      finalArray.push(obj);
+  for(let person of arr){
+    if(cb(person)){
+      finalArray.push(person);
     }
   }
 return finalArray;
