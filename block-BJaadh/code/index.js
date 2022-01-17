@@ -25,16 +25,22 @@ strings.join(' ');
 // - Remove the first word in the array (strings)
 strings.shift()
 // - Find all the words that contain 'is' use string method 'includes'
-strings.includes("is");
+let allIs=strings.filter((string) =>string.includes("is"));
 // - Find all the words that contain 'is' use string method 'indexOf'
-strings.indexOf("is")
+let allIsAgain=strings.filter((string) =>string.indexOf("is")!==-1);
 // - Check if all the numbers in numbers array are divisible by three use array method (every)
 numbers.every(function(number){
  return number%3===0;
 });
+
+
+numbers.every((num) => num%3===0);
 // -  Sort Array from smallest to largest
 
 numbers.sort((a,b) => a - b)
+
+
+let largest= numbers.sort((a,b)  =>  a -b).pop();
 
 // - Remove the last word in strings
 strings.pop()
@@ -49,6 +55,9 @@ numbers.forEach((number)=>{
 console.log(num)
 // - Find longest string in strings
 strings.sort((a,b) => b.length - a.length)[0]
+
+
+let longestString=strings.sort((a,b) => a.length - b.length).pop();
 // - Find all the even numbers
 numbers.filter(function(number){
 return number%2===0;
@@ -80,6 +89,11 @@ wordsLength.forEach((word) => sum += word );
 console.log(sum);
 
 
+wordsLength.reduce((acc,cv) =>{
+        acc= acc+cv;
+        return acc;
+
+},0);
 // - Customers Array
 var customers = [
   { firstname: 'Joe', lastname: 'Blogs' },
@@ -89,6 +103,8 @@ var customers = [
 ];
 // - Find all customers whose firstname starts with 'J'
 customers.filter((start) => start.firstname[0] === 'J');
+
+customers.filter((start) => start.firstname.startsWith('J'));
 // - Create new array with only first name
 
 let firstNames = customers.map((name) => name.firstname );
@@ -97,7 +113,7 @@ console.log(firstNames);
 let fullNames = customers.map((name) => name.firstname + " "+ name.lastname);
 console.log(fullNames);
 // - Sort the array created above alphabetically
- customers.sort((a,b) => b-a);
+[...fullNames].sort();
 // - Create a new array that contains only user who has at least one vowel in the firstname.
 let vowelName = customers.filter((vowel) => {
   if ( vowel.firstname.includes('a') || vowel.firstname.includes('e') || vowel.firstname.includes('i') || vowel.firstname.includes('i') || vowel.firstname.includes('o') || vowel.firstname.includes('u') ){
