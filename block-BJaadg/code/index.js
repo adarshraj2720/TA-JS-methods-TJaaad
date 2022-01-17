@@ -13,11 +13,11 @@ let indexofIs=quote.indexOf("is");
 2. Find the character at the index indexOfIs (Problem 1) in quote.
 
 */
-quote.charAt("is");
+quote.charAt(indexofIs);
 /*
 3. Log the message saying `The index of first is in quote is 7`
 */
-console.log(`The index of first is in quote is ${quote.indexOf("is")}`)
+console.log(`The index of first is in quote is ${quote.charAt(indexofIs)}`)
 /*
 4. Log the message for first 6 characters of quote like this.
   The character at index 0 is 'T'
@@ -68,19 +68,22 @@ let quoteSplitted=quote.split(" ");
 
 quoteSplitted.pop();
 quoteSplitted.push("tomorrow");
+let index=quoteSplitted.indexOf("today");
+quoteSplitted[index]="tomorrow"
+quoteSplitted.join(" ")
 
 /*
 12. Find the index of second "o" in quote. Use indexOf
 */
-quote.lastIndexOf("o",2);
+quote.lastIndexOf("o",8);
 /*
 13. Find the last index of letter "a" in quote.
 */
-quote.lastIndexOf("a");
+let lastIndexA=quote.lastIndexOf("a");
 /*
 14. Find the second last index of letter "a" in quote.
 */
-quote.lastIndexOf("a",quote.length - 1);
+quote.lastIndexOf("a",lastIndexA - 1);
 /*
 15. Make the quote 70 character long. If it has less characters add rest as .......
 Example: "Hello" (convert to 10 characters) => "Hello....."
@@ -88,10 +91,19 @@ Store the output in a new variable
 */
 let dot="..."
 let a=quote.concat(dot.repeat(6));
+
+let max=70;
+let length=quote.length;
+for(i=length;i<max;i++){
+  quote= quote+"."
+}
+let newQuote=quote+'.'.repeat(max-length)
 /*
 16. Do same as (15) but the ... should come in start. Store the output in a new variable
 */
 let b=dot.repeat(15).concat(quote);
+
+let newStartQuote='.'.repeat(max-length)+quote
 /*
 17. Log the repeat of "Hello World!" 10 times.
 */
@@ -108,7 +120,7 @@ to.replace("Stark","Lannister");
 /*
 20. Make the quote of length 30 and put ... at the end. (use slice)
 */
-
+let limit=quote.slice(0,30)+"...";
 /*
 21. Find out does quote, from, to starts with "A"
 */
