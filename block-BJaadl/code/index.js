@@ -11,13 +11,14 @@ let words = [
 
 // - Write a function findLongestWord that takes an array of words and returns the longest word from the array. (Use above array "words" to test it). If there are 2 with the same length, it should return the first occurrence.
 function findLongestWord(arr){
-  words.some((word)=>{
-    word.length>0
-    return word;
-
-  })
+ return [...arr].sort((a,b) => a.length -b.length).pop()
 
 };
+
+findLongestWord(words);
+
+
+words.sort((a,b) => a.length -b.length).pop()
 // - Convert the above array "words" into an array of length of word instead of word.
 
   words.map((word) => word.length);
@@ -83,11 +84,12 @@ numbers.reduce((acc ,cv) =>{
 
 },0)
 //- Write a function averageNumbers that receives an array of numbers and calculate the average of the numbers
-numbers.reduce((acc ,cv) =>{
-  acc = acc + cv ;
-   return acc/numbers.length ;
-
-},0)
+function averageNumbers(arr){
+  let avg=numbers.reduce((acc,cv) =>{
+    acc = acc + cv
+    return acc
+  },0)/arr.length
+}
 
 let strings = [
   'seat',
@@ -103,4 +105,9 @@ let strings = [
 ];
 
 // - Write a function averageWordLength that receives an array of words2 and calculate the average length of the words.
-strings[2].length
+function averageWordLength(words){
+  return( words.map((w) => w.length)
+  .reduce((acc,cv) =>{
+    return acc+cv;
+  },0))/words.length
+}
