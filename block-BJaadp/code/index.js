@@ -94,7 +94,12 @@ Output:
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
 let fruitsObj = fruitBasket.reduce((acc , cv) => {
-
+if(acc[cv]){
+  acc[cv]=acc[cv]+1;
+}else{
+  acc[cv] + 1;
+}
+return acc;
 },{});
 /* 
 
@@ -108,6 +113,14 @@ Output:
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
 
+let fruitsArray= Object.keys(fruitsObj).reduce((acc,cv) =>{
+      acc = acc.concat([cv,fruitsObj[cv]]);
+      return acc;
+
+
+},[]);
+
+
 const data = [
   [1, 2, 3],
   [4, 5, 6],
@@ -119,7 +132,7 @@ const data = [
 
 data.reduce((acc,cv) => {
 
-  acc = acc.flat(cv);
+  acc = acc.concat(cv);
   return acc
 },[])
 
@@ -132,7 +145,7 @@ const dataTwo = [
 
 // Using reduce flat dataTwo array
 data.reduce((acc,cv) =>{
-acc = acc.flat(cv);
+acc = acc.concat(cv.flat(Infinity));
 return acc;
 
 },[]);
@@ -219,3 +232,4 @@ pipeline2.reduce((acc,cv) =>{
 
   acc= cv(acc);
 },8)
+
