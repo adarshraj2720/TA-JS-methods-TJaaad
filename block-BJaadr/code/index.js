@@ -1,6 +1,6 @@
 // NOTE: You can only use the (reduce) array method to solve this exercise:
 
-function countAllPeople() {
+
   // your code goes here
 
 function countAllPeople(){
@@ -12,7 +12,7 @@ function countAllPeople(){
 
   return sumOfPeople;
 }
-}
+
 
 function peopleByHouses() {
   // your code goes here
@@ -37,6 +37,20 @@ function everyone() {
   },[]).flat(Infinity);
 }
 
+
+
+function everyone(){
+return got.houses.reduce((acc,cv) =>{
+
+  acc =acc.concat(cv.people.map((p) => p.name))
+  return acc
+},[])
+
+
+}
+
+
+
 function nameWithS() {
   // your code goes here
   return got.houses.reduce((acc,cv) => {
@@ -50,6 +64,21 @@ acc.push(arr);
 return acc;
   },[]).flat(Infinity);
 }
+
+
+
+function nameWithS(){
+
+return got.houses((acc,cv) =>{
+   acc = acc.concat(house.name).map((p) => p.name)
+   .filter((name) =>name.toLowerCase().includes("s"))
+   return acc
+
+},[])
+
+}
+
+
 
 function nameWithA() {
   // your code goes here
@@ -65,6 +94,26 @@ function nameWithA() {
   },[]).flat(Infinity);
 }
 
+
+
+function nameWithA(){
+
+  return got.houses((acc,cv) =>{
+     acc = acc.concat(house.name).map((p) => p.name)
+     .filter((name) =>name.toLowerCase().includes("A"))
+     return acc
+  
+  },[])
+  
+  }
+
+
+  function nameWithA(){
+
+    let allPeople=everyone()
+    return allPeople.filter((name) =>name.toLowerCase().includes("a"))
+  }
+
 function surnameWithS() {
   // your code goes here
   return got.houses.reduce((acc,cv) =>{
@@ -78,6 +127,15 @@ function surnameWithS() {
     return acc
   },[]).flat(Infinity);
 }
+
+
+function surnameWithS(){
+  let allPeople= everyone()
+  return allPeople.filter((name) =>name.split(" ")[1]
+  .toLowerCase().includes("s"))
+}
+
+
 
 function surnameWithA() {
   // your code goes here
@@ -103,6 +161,14 @@ function peopleNameOfAllHouses() {
  } ,{})
 }
 
+
+
+function peopleNameOfAllHouses(){
+  return got.houses.reduce((acc,cv) =>{
+    acc[cv.name]=cv.people.map((p) => p.name);
+    return acc;
+  },{})
+}
 // Testing your result after writing your function
 console.log(countAllPeople());
 // Output should be 33
