@@ -15,19 +15,61 @@ let persons = [
 
 // NOTE: Use reduce method whereever you can to solve this exercise:
 
+
 // Find the average grade
-
+let avgGrade = persons.reduce((acc , cv) =>{
+  let grades = cv.grade;
+  acc.push(grades);
+  return acc;
+}, []).reduce((acc , cv) => {
+   acc = acc + cv;
+   return acc;
+},0) / persons.length; 
 // Find the average grade of male
-
+let male= persons.filter((M) => M.sex==="M")
+let avgMale = persons.reduce((acc , cv) => {
+  if(cv.sex === "M"){
+      acc.push(cv.grade);
+  }
+  return acc;
+},[]).reduce((acc , cv) => {
+  acc = acc + cv;
+  return acc;
+},0)/male.length
 // Find the average grade of female
-
+let female= persons.filter((F) => F.sex==="F")
+let avgFemale=persons.reduce((acc,cv) =>{
+  if(cv.sex==="F"){
+    acc.push(cv.grade)
+  }
+  return acc
+},[])/female.length
 // Find the highest grade
-
+let highestGrade = persons.reduce((acc , cv) =>{
+  acc.push(cv.grade);
+  return acc;
+},[]).sort((a ,b) => b-a )[0];
 // Find the highest grade in male
-
+let maleGrade =persons.reduce((acc , cv) => {
+  if(cv.sex === "M"){
+      acc.push(cv.grade);
+  }
+  return acc;
+},[]).sort((a , b) => b-a)[0];
 // Find the highest grade in female
-
+let femaleGrade= persons.reduce((acc,cv) =>{
+if(cv.sex==="F"){
+  acc.push(cv.grade)
+}
+},[]).sort((a,b) => b-a)[0];
 // Find the highest grade for people whose name starts with 'J' or 'P'
+let higestGrade = persons.reduce((acc ,cv) =>{
+  if(cv.name.startsWith('J') || cv.name.startsWith('p')){
+     acc.push(cv.grade);
+  }
+  return acc;
+},[]).sort((a,b) => b-a)[0];
+
 
 const fruitBasket = [
   'banana',
@@ -51,8 +93,12 @@ that fruit has appeared in the array. Store it in new variable fruitsObj
 Output: 
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
+let fruitsObj = fruitBasket.reduce((acc , cv) => {
 
+},{});
 /* 
+
+
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
 that fruit appeared. Use the variable defined above (fruitsObj). To get all the keys of an array you can use Object.keys()
@@ -71,6 +117,12 @@ const data = [
 
 // Using reduce flat data array
 
+data.reduce((acc,cv) => {
+
+  acc = acc.flat(cv);
+  return acc
+},[])
+
 const dataTwo = [
   [1, 2, 3],
   [4, 5, 6],
@@ -79,6 +131,11 @@ const dataTwo = [
 ];
 
 // Using reduce flat dataTwo array
+data.reduce((acc,cv) =>{
+acc = acc.flat(cv);
+return acc;
+
+},[]);
 
 /*
 
@@ -101,6 +158,33 @@ let pipeline = [
   increment,
 ];
 
+function  increment(num){
+  return num+1;
+}
+
+function double(num){
+  return num*2;
+}
+
+function decrement(num){
+  return num-1;
+}
+
+
+function triple(num){
+  return num*3;
+}
+
+
+function half(num){
+  return Math.round(num/2);
+}
+
+
+pipeline.reduce((acc,cv) =>{
+
+  acc= cv(acc);
+},3)
 /*
 Using the pipeline variable that contains the collection of functions, taking the initial value 3 find the output.
 
@@ -130,3 +214,8 @@ let pipeline2 = [
 ];
 
 // Find the output using pipeline2 the initial value if 8
+
+pipeline2.reduce((acc,cv) =>{
+
+  acc= cv(acc);
+},8)
