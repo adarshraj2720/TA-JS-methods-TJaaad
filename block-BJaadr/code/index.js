@@ -2,34 +2,105 @@
 
 function countAllPeople() {
   // your code goes here
+
+function countAllPeople(){
+  let sumOfPeople=got.houses.reduce((acc,cv) =>{
+   acc = acc+ cv.people.length
+   return acc
+
+  },0) 
+
+  return sumOfPeople;
+}
 }
 
 function peopleByHouses() {
   // your code goes here
+  return got.houses.reduce((acc,cv) =>{
+
+    acc[cv.name] = cv.people.length;
+  
+  return acc;
+ } ,{});
+
 }
 
 function everyone() {
   // your code goes here
+
+  return got.houses.reduce((acc,cv) => {
+
+    acc.push(cv.people.map((obj)=>{
+      return obj.name
+    }));
+    return acc;
+  },[]).flat(Infinity);
 }
 
 function nameWithS() {
   // your code goes here
+  return got.houses.reduce((acc,cv) => {
+    let arr =cv.people.reduce((acc,cv) =>{
+      if(cv.name.includes("S") || cv.name.includes("s")){
+        acc.push(cv.name)
+      }
+return acc
+    },[])
+acc.push(arr);
+return acc;
+  },[]).flat(Infinity);
 }
 
 function nameWithA() {
   // your code goes here
+  return got.houses.reduce((acc,cv) =>{
+    let arr =cv.people.reduce((acc,cv) =>{
+      if(cv.name.includes("A") || cv.name.includes("a")){
+        acc.push(cv.name)
+      }
+      return acc
+    },[])
+    acc.push(arr);
+    return acc;
+  },[]).flat(Infinity);
 }
 
 function surnameWithS() {
   // your code goes here
+  return got.houses.reduce((acc,cv) =>{
+    let arr = cv.people.reduce((acc,cv) =>{
+      if(cv.name.split(" ")[1].includes("S")){
+        acc.push(cv.name);
+      }
+      return acc
+    },[])
+    acc.push(arr)
+    return acc
+  },[]).flat(Infinity);
 }
 
 function surnameWithA() {
   // your code goes here
+  return got.houses.reduce((acc,cv) =>{
+    let arr =cv.people.reduce((acc,cv) =>{
+      if(cv.name.split(" ")[1].includes("A")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[])
+    acc.push(arr)
+    return acc
+  },[]).flat(Infinity)
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  return got.houses.reduce((acc,cv) =>{
+    acc[cv.name] = cv.people.map((obj)=>{
+        return obj.name
+    });
+  return acc;
+ } ,{})
 }
 
 // Testing your result after writing your function
