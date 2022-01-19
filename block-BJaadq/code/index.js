@@ -15,7 +15,10 @@ function peopleByHouses() {
   // your code goes here
   let  obj={}
   
-    obj[got.houses.name]=got.houses.length;
+    got.houses.forEach((house) =>{
+      obj[house.name]= house.people.length
+
+    })
     return obj
 }
 
@@ -62,7 +65,12 @@ function surnameWithA() {
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  let obj={}
+  got.houses.forEach((house)=>{
 
+    obj[house.name]= house.people.map((p) => p.name);
+  })
+ return obj
 }
 
 // Testing your result after writing your function
